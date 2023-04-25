@@ -11,3 +11,15 @@ services:
       - "27017:27017"
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  auth-service:
+    image: reisafriche/auth-service:v1
+    container_name: auth-service
+    # build: ../web-authentication
+    ports:
+      - "7777:7777"
+  url-service:
+    image: reisafriche/url-service:v1
+    container_name: url-service
+    # build: ../web-URL-shortener
+    ports:
+      - "5000:5000"
