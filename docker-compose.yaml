@@ -18,7 +18,7 @@ services:
     ports:
       - "7777:7777"
   url-service:
-    image: reisafriche/url-service:v1
+    image: reisafriche/url-service:v5
     container_name: url-service
     # build: ../web-URL-shortener
     ports:
