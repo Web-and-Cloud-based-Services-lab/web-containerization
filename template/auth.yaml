@@ -28,9 +28,7 @@ spec:
             configMapKeyRef:
               name: mongo-configmap
               key: mongo-service
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
