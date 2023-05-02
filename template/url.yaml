@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-deployment
+  lables:
+    app: url
+spec:
+  # set the number of desierd pods as 3
+  replicas: 3
+  # used to connect with pod
+  selector:
+    matchLables:
+      app: url
+  # define the pod
+  template:
+    metadata;
+      lables:
+        app: url
+    spec:
+      containers:
+      - name: url
+        image: reisafriche/url-service:v5
+        ports:
+        - containerPort: 5000
+        env:
+        - name: database
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-configmap
+              key: mongo-service
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: url-service
+spec:
+  selector:
+    app: url
+  # assign service an external IP affress apart from loadbalancer
+  # type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      # targetport is lisening to the conatinerport
+      targetPort: 5000
+      # the port open for browsers
+      # nodePort: 30000

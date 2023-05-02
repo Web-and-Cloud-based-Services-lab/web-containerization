@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  lables:
+    app: auth
+spec:
+  # set the number of desierd pods as 3
+  replicas: 3
+  # used to connect with pod
+  selector:
+    matchLables:
+      app: auth
+  # define the pod
+  template:
+    metadata;
+      lables:
+        app: auth
+    spec:
+      containers:
+      - name: auth
+        image: reisafriche/auth-service:v1
+        ports:
+        - containerPort: 7777
+        env:
+        - name: database
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-configmap
+              key: mongo-service
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  # type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 7777
+      targetPort: 7777
+      #nodePort: 30000

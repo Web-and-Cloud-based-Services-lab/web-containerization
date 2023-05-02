@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webservices-ingress
+spec:
+  rules:
+    - host: my-webservices-group8.com
+      http:
+        paths:
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port: 
+                  number: 7777
+          - path: /users/login
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port: 
+                  number: 7777
+          - path: /users/validation
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port: 
+                  number: 7777
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: url-service
+                port: 
+                  number: 5000
