@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: url-deployment
-  lables:
+  labels:
     app: url
 spec:
   replicas: 3   # set the number of desierd pods as 3
   selector:  # used to connect with pod
-    matchLables:
+    matchLabels:
       app: url
   template:  # define the pod
-    metadata;
-      lables:
+    metadata:
+      labels:
         app: url
     spec:
       containers:
