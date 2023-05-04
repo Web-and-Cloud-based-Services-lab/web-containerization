@@ -19,12 +19,12 @@ spec:
         image: reisafriche/url-service:v5
         ports:
         - containerPort: 5000
-        env:
-        - name: database
-          valueFrom:
-            configMapKeyRef:
-              name: mongo-configmap
-              key: mongo-service
+       # env:
+       # - name: database
+       #   valueFrom:
+        #    configMapKeyRef:
+         #     name: mongo-configmap
+          #    key: mongo-service
 ---
 apiVersion: v1
 kind: Service
