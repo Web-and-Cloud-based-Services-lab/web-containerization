@@ -19,12 +19,12 @@ spec:
         image: reisafriche/auth-service:v2
         ports:
         - containerPort: 7777
-        env:
-        - name: database
-          valueFrom:
-            configMapKeyRef:
-              name: mongo-configmap
-              key: mongo-url
+       # env:
+       # - name: database
+        #  valueFrom:
+         #   configMapKeyRef:
+          #    name: mongo-configmap
+           #   key: mongo-url
 ---
 apiVersion: v1
 kind: Service
