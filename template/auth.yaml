@@ -19,7 +19,9 @@ spec:
         image: reisafriche/auth-service:v2
         ports:
         - containerPort: 7777
-       # env:
+        env:
+        - name: mongo_URL
+          value: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
        # - name: database
         #  valueFrom:
          #   configMapKeyRef:
