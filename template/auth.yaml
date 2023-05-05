@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: reisafriche/auth-service:v1
+        image: reisafriche/auth-service:v2
         ports:
         - containerPort: 7777
         env:

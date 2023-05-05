@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: url
-        image: reisafriche/url-service:v5
+        image: reisafriche/url-service:v2
         ports:
         - containerPort: 5000
         env:
