@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: webservices-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: my-webservices-group8.com
       http:
@@ -43,7 +44,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 203.0.113.10-203.0.113.15
+  - 172.16.14.80-172.16.14.90
   autoAssign: true
 ---
 apiVersion: metallb.io/v1beta1
