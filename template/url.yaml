@@ -37,5 +37,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000   # targetport is lisening to the conatinerport
-      nodePort: 30001
   type: LoadBalancer
