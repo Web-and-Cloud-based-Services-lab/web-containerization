@@ -5,7 +5,7 @@ metadata:
   labels:
     app: url
 spec:
-  replicas: 3   # set the number of desierd pods as 3
+  replicas: 1   # set the number of desierd pods as 3
   selector:  # used to connect with pod
     matchLabels:
       app: url
@@ -19,12 +19,12 @@ spec:
         image: reisafriche/url-service:v5
         ports:
         - containerPort: 5000
-       # env:
-       # - name: database
-       #   valueFrom:
-        #    configMapKeyRef:
-         #     name: mongo-configmap
-          #    key: mongo-service
+        env:
+        - name: database
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-configmap
+              key: mongo-url
 ---
 apiVersion: v1
 kind: Service
@@ -37,3 +37,5 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000   # targetport is lisening to the conatinerport
+      nodePort: 30001
+  type: LoadBalancer

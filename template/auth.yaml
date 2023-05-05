@@ -5,7 +5,7 @@ metadata:
   labels:
     app: auth
 spec:
-  replicas: 3  # set the number of desierd pods as 3
+  replicas: 1  # set the number of desierd pods as 3
   selector:  # used to connect with pod
     matchLabels:
       app: auth
@@ -19,12 +19,12 @@ spec:
         image: reisafriche/auth-service:v1
         ports:
         - containerPort: 7777
-       # env:
-      #  - name: database
-       #   valueFrom:
-        #    configMapKeyRef:
-         #    name: mongo-configmap
-          #    key: mongo-service
+        env:
+        - name: database
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-configmap
+              key: mongo-url
 ---
 apiVersion: v1
 kind: Service
@@ -37,3 +37,5 @@ spec:
     - protocol: TCP
       port: 7777
       targetPort: 7777
+      nodePort: 30000
+  type: LoadBalancer
