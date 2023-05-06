@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: url
-        image: clytze/url-service:v7
+        image: reisafriche/url-service:v2
         ports:
         - containerPort: 5000
         env:
