@@ -20,16 +20,16 @@ spec:
         ports:
         - containerPort: 7777
         env:
-          - name: USER_NAME
+          - name: AUTH_USER_NAME
             valueFrom:
               secretKeyRef:
-                name: mongo-secret
-                key: mongo-user
-          - name: USER_PWD
+                name: auth-secret
+                key: auth-user
+          - name: AUTH_USER_PWD
             valueFrom:
               secretKeyRef: 
-                name: mongo-secret
-                key: mongo-pwd
+                name: auth-secret
+                key: auth-pwd
           - name: DB_URL
             valueFrom:
               configMapKeyRef: 
