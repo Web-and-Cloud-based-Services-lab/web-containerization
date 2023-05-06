@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: reisafriche/auth-service:v2
+        image: clytze/auth-service:v8
         ports:
         - containerPort: 7777
         env:
