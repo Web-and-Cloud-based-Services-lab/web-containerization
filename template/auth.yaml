@@ -19,22 +19,22 @@ spec:
         image: clytze/auth-service:v8
         ports:
         - containerPort: 7777
-        env:
-          - name: AUTH_USER_NAME
-            valueFrom:
-              secretKeyRef:
-                name: auth-secret
-                key: auth-user
-          - name: AUTH_USER_PWD
-            valueFrom:
-              secretKeyRef: 
-                name: auth-secret
-                key: auth-pwd
-          - name: DB_URL
-            valueFrom:
-              configMapKeyRef: 
-                name: mongo-config
-                key: mongo-url
+      #  env:
+        #  - name: AUTH_USER_NAME
+        #    valueFrom:
+          #    secretKeyRef:
+          ##      name: auth-secret
+           #     key: auth-user
+         # - name: AUTH_USER_PWD
+         #   valueFrom:
+          #    secretKeyRef: 
+         #       name: auth-secret
+          #      key: auth-pwd
+         # - name: DB_URL
+         #   valueFrom:
+          #    configMapKeyRef: 
+           #     name: mongo-config
+          #      key: mongo-url
        
 ---
 apiVersion: v1
