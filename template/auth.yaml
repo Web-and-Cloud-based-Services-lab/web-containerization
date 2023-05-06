@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: clytze/auth-service:v6
+        image: clytze/auth-service:v7
         ports:
         - containerPort: 7777
         env:
