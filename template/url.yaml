@@ -16,12 +16,25 @@ spec:
     spec:
       containers:
       - name: url
-        image: reisafriche/url-service:v2
+        image: clytze/url-service:v6
         ports:
         - containerPort: 5000
         env:
-        - name: mongo_URL
-          value: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+          - name: USER_NAME
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-user
+          - name: USER_PWD
+            valueFrom:
+              secretKeyRef: 
+                name: mongo-secret
+                key: mongo-pwd
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef: 
+                name: mongo-config
+                key: mongo-url
        # - name: database
           #valueFrom:
            # configMapKeyRef:
