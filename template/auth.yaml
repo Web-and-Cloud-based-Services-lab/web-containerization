@@ -16,25 +16,25 @@ spec:
     spec:
       containers:
       - name: auth
-        image: clytze/auth-service:v9
+        image: reisafriche/auth-service:v4
         ports:
         - containerPort: 7777
-      #  env:
-        #  - name: AUTH_USER_NAME
-        #    valueFrom:
-          #    secretKeyRef:
-          ##      name: auth-secret
-           #     key: auth-user
-         # - name: AUTH_USER_PWD
-         #   valueFrom:
-          #    secretKeyRef: 
-         #       name: auth-secret
-          #      key: auth-pwd
-         # - name: DB_URL
-         #   valueFrom:
-          #    configMapKeyRef: 
-           #     name: mongo-config
-          #      key: mongo-url
+      env:
+          - name: USER_NAME
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: url-user
+          - name: USER_PWD
+            valueFrom:
+              secretKeyRef: 
+                name: mongo-secret
+                key: url-pwd
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef: 
+                name: mongo-config
+                key: mongo-url
        
 ---
 apiVersion: v1
