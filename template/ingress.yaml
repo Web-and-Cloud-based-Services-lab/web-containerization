@@ -5,8 +5,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: my-webservices-group8.com
-      http:
+    # - host: my-webservices-group8.com
+    - http:
         paths:
           - path: /users
             pathType: Prefix
@@ -36,22 +36,22 @@ spec:
                 name: url-service
                 port: 
                   number: 5000
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: default
-  namespace: metallb-system
-spec:
-  addresses:
-  - 172.16.14.80-172.16.14.90
-  autoAssign: true
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: default
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-  - default
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: default
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#   - 145.100.135.157-145.100.135.159
+#   autoAssign: true
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: default
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - default
