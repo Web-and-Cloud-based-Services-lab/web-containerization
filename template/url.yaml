@@ -16,25 +16,25 @@ spec:
     spec:
       containers:
       - name: url
-        image: clytze/url-service:v8
+        image: clytze/url-service:v9
         ports:
         - containerPort: 5000
-        env:
-          - name: URL_USER_NAME
-            valueFrom:
-              secretKeyRef:
-                name: url-secret
-                key: url-user
-          - name: URL_USER_PWD
-            valueFrom:
-              secretKeyRef: 
-                name: url-secret
-                key: url-pwd
-          - name: DB_URL
-            valueFrom:
-              configMapKeyRef: 
-                name: mongo-config
-                key: mongo-url
+        #env:
+          #- name: URL_USER_NAME
+           # valueFrom:
+           #   secretKeyRef:
+           #     name: url-secret
+          #      key: url-user
+       #   - name: URL_USER_PWD
+        #    valueFrom:
+         #     secretKeyRef: 
+          #      name: url-secret
+         #       key: url-pwd
+         # - name: DB_URL
+        #    valueFrom:
+          #    configMapKeyRef: 
+          #      name: mongo-config
+           #     key: mongo-url
        # - name: database
           #valueFrom:
            # configMapKeyRef:
