@@ -13,12 +13,71 @@ https://kb.narrative.io/what-is-unix-time#:~:text=Unix%20time%20is%20a%20way,and
 - MongoDB - Role-based Access control:
 https://www.mongodb.com/docs/manual/core/authorization/
 
+- K8s - Deployment:
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+- K8s - Service:
+https://kubernetes.io/docs/concepts/services-networking/service/
+
 ## Prerequisites
 
 1. `Docker`  installed
 2. `Python >= 3.4`  installed
+3. `kubernetes` installed
 
-## Build
+## Build(k8s)
+### Deployment
+directory: `~/web-authentication`
+```shell
+# build web-authentication image
+docker buildx create --use
+docker buildx build -t clytze/auth-service:v9 --platform linux/amd64,linux/arm64 --push .
+```
+directory: `~/ web-URL-shortener`
+``` shell
+# build web-URL-shortener image
+docker buildx create --use
+docker buildx build -t clytze/url-service:v9 --platform linux/amd64,linux/arm64 --push .
+```
+
+### Deploy web services
+directory: `~/web-containerization/template`
+```shell
+#apply the deployment and service of mongodb
+kubectl apply -f mongo.yaml
+#apply the deployment and service of authentication service
+kubectl apply -f auth.yaml
+#apply the deployment and service of URL-shortener service
+kubectl apply -f url.yaml
+``` 
+### Test k8s
+Check pods
+```shell
+kubectl get pods
+```
+Check service
+```shell
+kubectl get service
+```
+Check the logs of pods 
+``` shell
+kubectl logs <podName>
+```
+***TEST services***
+use the INTERNAL-IP of any one of the three nodes, e.g. 145.100.135.157
+
+Find INTERNAL-IP of nodes:
+```shell
+kubectl get node -o wide
+```
+test in postman with the address
+```shell
+<INTERNAL-IP>:30074
+```
+
+
+
+## Build(Docker-compose)
 
 
 
