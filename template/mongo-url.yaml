@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  labels:
+    app: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongodb-url
+          image: mongo:4.4.6
+          ports:
+          - containerPort: 27018
+         # env:
+        # - name: USER_NAME
+          #  valueFrom:
+          #    secretKeyRef:
+           #     name: mongo-secret
+           #     key: mongo-user
+         # - name: USER_PWD
+         #   valueFrom:
+         #     secretKeyRef: 
+        #        name: mongo-secret
+         #       key: mongo-pwd
+         # - name: DB_URL
+          #  valueFrom:
+          #    configMapKeyRef: 
+           #     name: mongo-config
+           #     key: mongo-url
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-url-service
+spec:
+  # the type of service is defualt as ClusterIP with no external requests
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27018
+      targetPort: 27018
