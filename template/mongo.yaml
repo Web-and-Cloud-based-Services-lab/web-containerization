@@ -19,7 +19,7 @@ spec:
           image: mongo:4.4.6
           ports:
           - containerPort: 27017
-         env:
+        env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef: 
@@ -30,6 +30,13 @@ spec:
             secretKeyRef: 
               name: mongo-sercret
               key: mongo-pwd
+        volumeMounts:
+            - name: storage
+              mountPath: /data/db/
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
 ---
 
 apiVersion: v1
