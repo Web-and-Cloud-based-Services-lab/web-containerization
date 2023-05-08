@@ -5,7 +5,7 @@ metadata:
   labels:
     app: auth
 spec:
-  replicas: 1  # set the number of desierd pods as 3
+  replicas: 3  # set the number of desierd pods as 3
   selector:  # used to connect with pod
     matchLabels:
       app: auth
