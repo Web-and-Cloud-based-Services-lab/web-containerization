@@ -5,7 +5,7 @@ metadata:
   labels:
     app: url
 spec:
-  replicas: 1   # set the number of desierd pods as 3
+  replicas: 4   # set the number of desierd pods as 3
   selector:  # used to connect with pod
     matchLabels:
       app: url
@@ -16,30 +16,25 @@ spec:
     spec:
       containers:
       - name: url
-        image: clytze/url-service:v9
+        image: reisafriche/url-service:v7
         ports:
         - containerPort: 5000
-        #env:
-          #- name: URL_USER_NAME
-           # valueFrom:
-           #   secretKeyRef:
-           #     name: url-secret
-          #      key: url-user
-       #   - name: URL_USER_PWD
-        #    valueFrom:
-         #     secretKeyRef: 
-          #      name: url-secret
-         #       key: url-pwd
-         # - name: DB_URL
-        #    valueFrom:
-          #    configMapKeyRef: 
-          #      name: mongo-config
-           #     key: mongo-url
-       # - name: database
-          #valueFrom:
-           # configMapKeyRef:
-           #   name: mongo-configmap
-            #  key: mongo-url
+        env:
+          # - name: USER_NAME
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: mongo-secret
+          #       key: mongo-user
+          # - name: USER_PWD
+          #   valueFrom:
+          #     secretKeyRef: 
+          #       name: mongo-secret
+          #       key: mongo-pwd
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef: 
+                name: mongo-config
+                key: mongo-svc
 ---
 apiVersion: v1
 kind: Service

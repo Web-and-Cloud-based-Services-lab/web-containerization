@@ -5,7 +5,7 @@ metadata:
   labels:
     app: auth
 spec:
-  replicas: 1  # set the number of desierd pods as 3
+  replicas: 3  # set the number of desierd pods as 3
   selector:  # used to connect with pod
     matchLabels:
       app: auth
@@ -16,25 +16,27 @@ spec:
     spec:
       containers:
       - name: auth
-        image: clytze/auth-service:v9
+        image: reisafriche/auth-service:v7
         ports:
         - containerPort: 7777
-      #  env:
-        #  - name: AUTH_USER_NAME
-        #    valueFrom:
-          #    secretKeyRef:
-          ##      name: auth-secret
-           #     key: auth-user
-         # - name: AUTH_USER_PWD
-         #   valueFrom:
-          #    secretKeyRef: 
-         #       name: auth-secret
-          #      key: auth-pwd
-         # - name: DB_URL
-         #   valueFrom:
-          #    configMapKeyRef: 
-           #     name: mongo-config
-          #      key: mongo-url
+        env:
+          # - name: USER_NAME
+          #   value: admin
+          #   # valueFrom:
+          #   #   secretKeyRef:
+          #   #     name: mongo-secret
+          #   #     key: mongo-user
+          # - name: USER_PWD
+          #   value: admin
+          #   # valueFrom:
+          #   #   secretKeyRef: 
+          #   #     name: mongo-secret
+          #   #     key: mongo-pwd
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef: 
+                name: mongo-config
+                key: mongo-svc
        
 ---
 apiVersion: v1
