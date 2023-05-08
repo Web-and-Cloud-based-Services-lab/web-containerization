@@ -16,25 +16,25 @@ spec:
     spec:
       containers:
       - name: url
-        image: reisafriche/url-service:v4
+        image: reisafriche/url-service:v7
         ports:
         - containerPort: 5000
         env:
-          - name: USER_NAME
-            valueFrom:
-              secretKeyRef:
-                name: mongo-secret
-                key: url-user
-          - name: USER_PWD
-            valueFrom:
-              secretKeyRef: 
-                name: mongo-secret
-                key: url-pwd
+          # - name: USER_NAME
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: mongo-secret
+          #       key: mongo-user
+          # - name: USER_PWD
+          #   valueFrom:
+          #     secretKeyRef: 
+          #       name: mongo-secret
+          #       key: mongo-pwd
           - name: DB_URL
             valueFrom:
               configMapKeyRef: 
                 name: mongo-config
-                key: mongo-url
+                key: mongo-svc
 ---
 apiVersion: v1
 kind: Service

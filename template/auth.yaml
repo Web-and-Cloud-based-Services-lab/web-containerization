@@ -16,25 +16,27 @@ spec:
     spec:
       containers:
       - name: auth
-        image: reisafriche/auth-service:v4
+        image: reisafriche/auth-service:v7
         ports:
         - containerPort: 7777
-      env:
-          - name: USER_NAME
-            valueFrom:
-              secretKeyRef:
-                name: mongo-secret
-                key: url-user
-          - name: USER_PWD
-            valueFrom:
-              secretKeyRef: 
-                name: mongo-secret
-                key: url-pwd
+        env:
+          # - name: USER_NAME
+          #   value: admin
+          #   # valueFrom:
+          #   #   secretKeyRef:
+          #   #     name: mongo-secret
+          #   #     key: mongo-user
+          # - name: USER_PWD
+          #   value: admin
+          #   # valueFrom:
+          #   #   secretKeyRef: 
+          #   #     name: mongo-secret
+          #   #     key: mongo-pwd
           - name: DB_URL
             valueFrom:
               configMapKeyRef: 
                 name: mongo-config
-                key: mongo-url
+                key: mongo-svc
        
 ---
 apiVersion: v1
