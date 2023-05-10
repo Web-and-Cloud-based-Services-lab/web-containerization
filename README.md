@@ -26,6 +26,10 @@ https://kubernetes.io/docs/concepts/services-networking/service/
 3. `kubernetes` installed
 
 ## Build(k8s)
+add the following text into your hosts:
+```shell
+145.100.135.158 my-webservices-group8.com
+```
 ### Deployment
 directory: `~/web-authentication`
 ```shell

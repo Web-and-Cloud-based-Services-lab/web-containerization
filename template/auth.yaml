@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: reisafriche/auth-service:v7
+        image: reisafriche/auth-service:v9
         ports:
         - containerPort: 7777
         env:
@@ -26,12 +26,11 @@ spec:
           #   #   secretKeyRef:
           #   #     name: mongo-secret
           #   #     key: mongo-user
-          # - name: USER_PWD
-          #   value: admin
-          #   # valueFrom:
-          #   #   secretKeyRef: 
-          #   #     name: mongo-secret
-          #   #     key: mongo-pwd
+          - name: JWT_PUBLIC
+            valueFrom:
+              secretKeyRef: 
+                name: jwt-secret
+                key: jwt-public
           - name: DB_URL
             valueFrom:
               configMapKeyRef: 
